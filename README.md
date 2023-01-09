@@ -12,3 +12,5 @@ Sorry for my poor English，Chinese⭕️，Other❌, Japanese is learning...
 [My website(only provide Chinese, sorry)](https://www.h-sr.cn)
 
 [e-mail](mailto:haosiru@h-sr.cn)
+
+![license](https://licensebuttons.net/i/l/by-sa/000000/ff/ff/ff/88x31.png)
