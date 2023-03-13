@@ -14,3 +14,11 @@ Sorry for my poor English，Chinese⭕️，Other❌, Japanese is learning...
 [e-mail](mailto:haosiru@h-sr.cn)
 
 ![license](https://licensebuttons.net/i/l/by-sa/000000/ff/ff/ff/88x31.png)
+
+### 捐助|Donate
+|微信支付|支付宝支付|
+|:-:|:-:|
+|![微信支付][1]|![支付宝支付][2]|
+
+  [1]: https://p0.meituan.net/csc/645ac7685c07d95a61ae37b0f5cc91d3126324.png
+  [2]: https://p0.meituan.net/csc/f1ec4b2295e84b057fe76cafe4e94710124239.jpg
