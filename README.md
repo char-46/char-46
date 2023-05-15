@@ -9,7 +9,7 @@ Chinese, senior high student, usually play Minecraft (not at all. Learning Andro
 英语不好，见谅。其他语言不会，正在学习日语......  
 Sorry for my poor English，Chinese⭕️，Other❌, Japanese is learning...
 
-### 时区
+### 时区 | Time Zone
 北京时间（UTC+08:00）  
 CST(Chinese Standard Time) UTC+08:00  
 Asia/Shanghai
