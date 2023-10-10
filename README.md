@@ -14,7 +14,7 @@ Sorry for my poor English，Chinese⭕️，Other❌, Japanese is learning...
 CST(Chinese Standard Time) UTC+08:00  
 Asia/Shanghai
 
-[My website(only provide Chinese, sorry)](https://www.h-sr.cn)
+~~[My website(only provide Chinese, sorry)](https://www.h-sr.cn)~~
 
 [e-mail](mailto:haosiru@h-sr.cn)
 
