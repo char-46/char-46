@@ -2,8 +2,8 @@
 ### Hi there 👋
 
 ### 自我介绍 | Self Intro
-中国人，高中生，重云厨，常玩的游戏是 Minecraaft（并不。正在学习 Android 开发。  
-Chinese, senior high student, usually play Minecraft (not at all. Learning Android development.
+中国人，专科生，重云厨，常玩的游戏是 Minecraaft（并不。正在学习 Android 开发。  
+Chinese, junior college student, usually play Minecraft (not at all. Learning Android development.
 
 ### 关于语言 | For Language
 英语不好，见谅。其他语言不会，正在学习日语......  
