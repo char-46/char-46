@@ -49,7 +49,7 @@ pipestatus = true
 disabled = false
 
 [cmd_duration]
-min_time = -1
+min_time = 0
 show_milliseconds = true
 style = 'bg:color_orange fg:color_fg0'
 format = '[](color_orange)[$duration]($style)[](color_orange)'
