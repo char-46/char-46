@@ -1,13 +1,3 @@
-# starship
-curl -sS https://starship.rs/install.sh | sh -s -- -y
-mkdir -p ~/.config
-wget 'https://raw.githubusercontent.com/char-46/char-46/refs/heads/master/starship.toml' -O ~/.config/starship.toml
-append_if_not_exists 'eval "$(starship init bash)"' ~/.bashrc
-append_if_not_exists 'eval "$(starship init zsh)"' ~/.zshrc
-
-# TODO: fnm conda...
-
-
 # 函数名：append_if_not_exists
 # 用法：append_if_not_exists "要追加的字符串" "目标文件路径"
 # 功能：如果目标文件中不存在该字符串，则将其追加到文件末尾
@@ -36,3 +26,14 @@ append_if_not_exists() {
     echo "$content_to_add"
   fi
 }
+
+# starship
+curl -sS https://starship.rs/install.sh | sh -s -- -y
+mkdir -p ~/.config
+wget 'https://raw.githubusercontent.com/char-46/char-46/refs/heads/master/starship.toml' -O ~/.config/starship.toml
+append_if_not_exists 'eval "$(starship init bash)"' ~/.bashrc
+append_if_not_exists 'eval "$(starship init zsh)"' ~/.zshrc
+
+# TODO: fnm conda...
+
+
