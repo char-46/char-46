@@ -27,16 +27,20 @@ foreach ($t in 'pnpm', 'fnm') {
     }
 }
 
-# ---------- 1. pymanager (Python Install Manager) ----------
-# python / py 由 pymanager 管理; uv 只负责工具链 (uvx / uv tool)
+# ---------- 1. Python: uv 管版本, pymanager 做 py launcher ----------
+# 架构: 所有解释器由 uv 安装/升级/卸载 (uv python ...);
+#       pymanager 仅作为新版 py launcher, 通过 PEP 514 注册表
+#       发现 uv 的解释器 (Astral\3.x), 不自己装任何运行时。
 if (-not (Get-Command py -ErrorAction SilentlyContinue)) {
-    Write-Host '==> 安装 pymanager (Python Install Manager)'
+    Write-Host '==> 安装 pymanager (仅用作 py launcher)'
     winget install --id Python.PythonInstallManager -e --accept-package-agreements --accept-source-agreements
 }
 if (-not (Get-Command python -ErrorAction SilentlyContinue)) {
-    Write-Host '==> 通过 pymanager 安装默认 Python'
-    py install default
+    Write-Host '==> uv 安装默认 Python 3.15'
+    uv python install 3.15
 }
+Write-Host '==> 将 uv 解释器注册给 pymanager (PEP 514)'
+& (Join-Path $PSScriptRoot 'sync-pymanager.ps1')
 
 # ---------- 2. shim 生成 ----------
 Write-Host '==> 生成命令 shim (pip/npm/npx)'

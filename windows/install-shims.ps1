@@ -3,7 +3,7 @@
 #  pip  -> uv pip <subcommand> --system
 #  npm  -> pnpm
 #  npx  -> pnpm dlx   (即 pnpx)
-#  (python/py 由 pymanager 管理，不生成 shim)
+#  (python/py 不生成 shim: uv 管解释器, pymanager 做 launcher)
 #
 #  用法: pwsh -File windows/install-shims.ps1 [-ShimDir D:\PATH]
 # ============================================================
@@ -17,9 +17,10 @@ if (-not (Get-Command uv -ErrorAction SilentlyContinue)) {
     throw 'uv 未安装。请先: winget install astral-sh.uv 或 cargo install uv'
 }
 
-# 注意: python / py 由 pymanager (Python Install Manager, winget:
-# Python.PythonInstallManager) 管理, 本脚本不生成 python shim。
-# uv 仅用于工具链 (uvx / uv tool), 解释器归 pymanager。
+# 注意: python / py 不生成手动 shim——解释器全部由 uv 管理:
+#   * uv python update-shell 提供 python.exe / python3.exe shim
+#   * pymanager 作为新版 py launcher, 经 PEP 514 注册表发现
+#     uv 的解释器 (Astral\3.x), 见 sync-pymanager.ps1
 
 New-Item -ItemType Directory -Force $ShimDir | Out-Null
 if (-not ($ShimDir -in ($env:Path -split ';'))) {

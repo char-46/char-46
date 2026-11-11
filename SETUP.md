@@ -40,8 +40,9 @@ sudo bash linux/arch/install.sh    # Arch / Manjaro
 
 | 命令 | 实际执行 | 说明 |
 |---|---|---|
-| `python` / `py` | pymanager 直接管理 | **不生成 shim**，py launcher 保持原样 |
-| `pip <subcmd>` | `uv pip <subcmd> --system` | `--system` 即 pymanager 的系统 Python |
+| `python` / `python3` | uv 管理的 CPython | uv shims / pymanager 别名，均指向 uv 安装的解释器 |
+| `py` / `py -3.x` | pymanager (launcher) → uv 解释器 | 经 PEP 514 注册表发现（`sync-pymanager.ps1`） |
+| `pip <subcmd>` | `uv pip <subcmd> --system` | `--system` + `UV_PYTHON` → uv 的解释器 |
 | `npm` | `pnpm` | |
 | `npx` | `pnpm dlx`（即 pnpx） | |
 
@@ -55,9 +56,9 @@ pwsh 中另有 profile 函数覆盖，优先级高于 fnm 注入的同名命令�
 | 包管理器 | 负责内容 |
 |---|---|
 | **winget** | GUI 应用、运行库、驱动、系统组件 |
-| **pymanager** | Windows 的 Python 解释器（`py install ...`，python/py 别名） |
+| **pymanager** | 仅作新版 **py launcher**（替代旧版 py.exe），不安装运行时 |
+| **uv** | **Python 解释器版本管理（全平台）** + 工具链（`uvx` / `uv tool`）+ `uv pip` |
 | **scoop** | Windows 便携 CLI 工具（git / gh / 7zip / ffmpeg / starship / clink / fnm / uv / pnpm …） |
-| **uv** | Python 工具链（`uvx` / `uv tool`）与 `uv pip`；Linux 上也管解释器 |
 | **fnm** | Node.js 运行时版本 |
 | **pnpm** | 全局 JS CLI，npm/npx 一律转发到 pnpm |
 | `D:\PATH` | 无法进包管理器的绿色单文件工具与手工脚本 |
