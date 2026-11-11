@@ -11,7 +11,8 @@ if defined FNM_AUTORUN_GUARD goto :eof
 set "FNM_AUTORUN_GUARD=AutorunGuard"
 
 :: skip everything in non-interactive mode (cmd /c ...)
-echo %cmdcmdline% | find /i "/c" >nul && goto :eof
+:: NOTE: use full path to find.exe - scoop findutils may shadow it
+echo %cmdcmdline% | "%SystemRoot%\System32\find.exe" /i "/c" >nul && goto :eof
 
 :: fnm (Node.js version manager)
 FOR /f "tokens=*" %%z IN ('fnm env --use-on-cd') DO CALL %%z

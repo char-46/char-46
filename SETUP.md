@@ -40,8 +40,8 @@ sudo bash linux/arch/install.sh    # Arch / Manjaro
 
 | 命令 | 实际执行 | 说明 |
 |---|---|---|
-| `python` / `python3` | uv 管理的 CPython | 软链/直链到 `uv python find 3.14` |
-| `pip <subcmd>` | `uv pip <subcmd> --system` | 配合用户环境变量 `UV_PYTHON=3.14` |
+| `python` / `py` | pymanager 直接管理 | **不生成 shim**，py launcher 保持原样 |
+| `pip <subcmd>` | `uv pip <subcmd> --system` | `--system` 即 pymanager 的系统 Python |
 | `npm` | `pnpm` | |
 | `npx` | `pnpm dlx`（即 pnpx） | |
 
@@ -55,9 +55,9 @@ pwsh 中另有 profile 函数覆盖，优先级高于 fnm 注入的同名命令�
 | 包管理器 | 负责内容 |
 |---|---|
 | **winget** | GUI 应用、运行库、驱动、系统组件 |
-| **scoop** | Windows 便携 CLI 工具（git / gh / 7zip / ffmpeg / starship / clink …） |
-| **cargo (rustup)** | Rust 编写的 CLI（fnm / uv / uesave …） |
-| **uv** | Python 解释器与 Python 工具链（`uv python` / `uv tool` / `uvx`） |
+| **pymanager** | Windows 的 Python 解释器（`py install ...`，python/py 别名） |
+| **scoop** | Windows 便携 CLI 工具（git / gh / 7zip / ffmpeg / starship / clink / fnm / uv / pnpm …） |
+| **uv** | Python 工具链（`uvx` / `uv tool`）与 `uv pip`；Linux 上也管解释器 |
 | **fnm** | Node.js 运行时版本 |
-| **pnpm** | 全局 JS CLI（opencode-ai …），npm/npx 一律转发到 pnpm |
+| **pnpm** | 全局 JS CLI，npm/npx 一律转发到 pnpm |
 | `D:\PATH` | 无法进包管理器的绿色单文件工具与手工脚本 |

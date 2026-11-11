@@ -5,11 +5,10 @@
 #  前置: scoop / uv / pnpm / fnm 至少 scoop+uv 已安装
 #  (scoop: https://scoop.sh ; uv: winget install astral-sh.uv)
 #
-#  用法: pwsh -File windows/bootstrap.ps1 [-ShimDir D:\PATH] [-PythonVersion 3.14]
+#  用法: pwsh -File windows/bootstrap.ps1 [-ShimDir D:\PATH]
 # ============================================================
 param(
     [string]$ShimDir = 'D:\PATH',
-    [string]$PythonVersion = '3.14',
     [switch]$NoStarship
 )
 
@@ -19,22 +18,29 @@ $RepoRoot = Split-Path $PSScriptRoot -Parent
 # ---------- 0. 依赖检查 ----------
 foreach ($t in 'scoop', 'uv') {
     if (-not (Get-Command $t -ErrorAction SilentlyContinue)) {
-        throw "缺少 $t 。scoop: iwr -useb get.scoop.sh | iex ; uv: winget install astral-sh.uv"
+        throw "缺少 $t 。scoop: iwr -useb get.scoop.sh | iex ; uv: scoop install uv"
     }
 }
 foreach ($t in 'pnpm', 'fnm') {
     if (-not (Get-Command $t -ErrorAction SilentlyContinue)) {
-        Write-Warning "建议安装 $t (node 生态): cargo install fnm ; irm https://get.pnpm.io/install.ps1 | iex"
+        Write-Warning "建议安装 $t (node 生态): scoop install fnm pnpm"
     }
 }
 
-# ---------- 1. UV_PYTHON 用户环境变量 ----------
-Write-Host '==> 设置 UV_PYTHON 用户环境变量'
-[Environment]::SetEnvironmentVariable('UV_PYTHON', $PythonVersion, 'User')
+# ---------- 1. pymanager (Python Install Manager) ----------
+# python / py 由 pymanager 管理; uv 只负责工具链 (uvx / uv tool)
+if (-not (Get-Command py -ErrorAction SilentlyContinue)) {
+    Write-Host '==> 安装 pymanager (Python Install Manager)'
+    winget install --id Python.PythonInstallManager -e --accept-package-agreements --accept-source-agreements
+}
+if (-not (Get-Command python -ErrorAction SilentlyContinue)) {
+    Write-Host '==> 通过 pymanager 安装默认 Python'
+    py install default
+}
 
 # ---------- 2. shim 生成 ----------
-Write-Host '==> 生成命令 shim (pip/npm/npx/python)'
-& (Join-Path $PSScriptRoot 'install-shims.ps1') -ShimDir $ShimDir -PythonVersion $PythonVersion
+Write-Host '==> 生成命令 shim (pip/npm/npx)'
+& (Join-Path $PSScriptRoot 'install-shims.ps1') -ShimDir $ShimDir
 
 # ---------- 3. starship ----------
 if (-not $NoStarship) {
